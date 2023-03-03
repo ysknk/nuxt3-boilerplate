@@ -2,6 +2,9 @@ export default {
   app: {
     baseURL: '/',
 
+    pageTransition: { name: 'page', mode: 'out-in' },
+    layoutTransition: { name: 'layout', mode: 'out-in' },
+
     head: {
       charset: 'utf-8',
       title: 'example title',
