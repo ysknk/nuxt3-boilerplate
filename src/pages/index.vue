@@ -29,7 +29,7 @@ div(ref="root")
     p data: {{ result }}
   div(v-else)
     p data: loading
-  p: NuxtLink(to="/simple/") simple
+  p: AtomsLink(to="/simple/") simple
   //- p: NuxtLink(to="/test/") test
   //- NuxtWelcome
 </template>
