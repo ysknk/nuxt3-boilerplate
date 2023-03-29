@@ -3,6 +3,7 @@ interface IProps {
   to?: string
   target?: '_blank'|'_self'
   rel?: 'noopener'|'noreferrer'|'noopener noreferrer'
+  label?: boolean
 }
 const props = withDefaults(defineProps<IProps>(), {
   to: '',
@@ -15,7 +16,10 @@ if (props.target !== '_self' && !props.rel) {
 </script>
 
 <template lang="pug">
-template(v-if="!props.to")
+template(v-if="props.label")
+  label.link
+    slot
+template(v-else-if="!props.to")
   button.link
     slot
 template(v-else-if="props.to === 'void'")
