@@ -5,7 +5,7 @@ interface IProps {
   rel?: 'noopener'|'noreferrer'|'noopener noreferrer'
 }
 const props = withDefaults(defineProps<IProps>(), {
-  to: '/',
+  to: '',
   target: '_self',
 })
 const rel = useState(props.rel)
@@ -15,17 +15,19 @@ if (props.target !== '_self' && !props.rel) {
 </script>
 
 <template lang="pug">
-span.link
-  template(v-if="!props.target || props.target === '_self'")
-    NuxtLink(:to="props.to")
-      slot
-  template(v-else)
-    a(
-      :href="props.to"
-      :target="props.target"
-      :rel="rel"
-    )
-      slot
+template(v-if="!props.to")
+  button
+    slot
+template(v-else-if="!props.target || props.target === '_self'")
+  NuxtLink.link(:to="props.to")
+    slot
+template(v-else)
+  a.link(
+    :href="props.to"
+    :target="props.target"
+    :rel="rel"
+  )
+    slot
 </template>
 
 <style lang="stylus" scoped>
