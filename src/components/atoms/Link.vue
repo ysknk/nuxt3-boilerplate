@@ -16,7 +16,10 @@ if (props.target !== '_self' && !props.rel) {
 
 <template lang="pug">
 template(v-if="!props.to")
-  button
+  button.link
+    slot
+template(v-else-if="props.to === 'void'")
+  a.link(href="javascript:void(0)")
     slot
 template(v-else-if="!props.target || props.target === '_self'")
   NuxtLink.link(:to="props.to")
