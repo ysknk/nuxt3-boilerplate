@@ -20,4 +20,10 @@ export default {
       // ]
     }
   },
+  runtimeConfig: {
+    public: {
+      assets: { // NOTE: common(vue,stylus) variables
+      }
+    }
+  }
 }
