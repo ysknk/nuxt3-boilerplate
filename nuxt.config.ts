@@ -36,7 +36,25 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         stylus: {
           additionalData: [
-            `@import "${resolveSrcDir}/assets/css/style.styl"`
+            (() => {
+              let result = ''
+              const assets = env.runtimeConfig.public.assets
+              for (let data in assets) {
+                const value = assets[data]
+                  result += `$${data} = `
+                if (typeof value === 'number'
+                    || (typeof value === 'boolean')
+                    || value.toString().match(/^#/)
+                ) {
+                  result += `${value}`
+                } else {
+                  result += `'${value}'`
+                }
+                result += '\n'
+              }
+              return result
+            })(),
+            `@import "${resolveSrcDir}/assets/css/style.styl"`,
           ].join('')
         }
       }
