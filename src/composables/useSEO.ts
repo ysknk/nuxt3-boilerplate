@@ -4,6 +4,7 @@ export type TState = {
   description?: string
   keywords?: string[]
   type?: 'website'|'article'
+  robots: string
 }
 
 export const useSEO = (payload: TState) => {
@@ -26,6 +27,13 @@ export const useSEO = (payload: TState) => {
   }
   if (payload.type) {
     meta.push({ property: 'og:type', content: payload.type })
+  }
+  if (payload.robots) {
+    if (payload.robots === 'no') {
+      meta.push({ name: 'robots', content: 'noindex,nofollow' })
+    } else {
+      meta.push({ name: 'robots', content: payload.robots })
+    }
   }
 
   useHead({
