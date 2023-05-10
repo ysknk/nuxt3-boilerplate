@@ -4,7 +4,7 @@ export type TState = {
   description?: string
   keywords?: string[]
   type?: 'website'|'article'
-  robots: string
+  robots?: string
 }
 
 export const useSEO = (payload: TState) => {
